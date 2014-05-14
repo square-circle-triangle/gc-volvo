@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Simple Gallery Example</title>
+		<style>
+			html, body {
+			    margin: 0;
+			    padding: 0;
+			}
+
+
+			.image_wrap {
+			    margin: 0 auto;
+			    width: 1024px;
+			    height: 768px;
+			    overflow: hidden;
+			}
+
+			.image_wrap img {
+			    display: block;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="image_wrap">
+		    <img src="img/home.jpg">
+		    <img src="img/comingsoon.jpg">
+		    <img src="img/placekitten.jpg">
+		    <img src="img/fillmurray.jpg">
+		</div>
+		
+
+		<script src="js/jquery.min.js"></script>
+		<script>
+			$(function(){
+
+				var EVENT_TYPE = ('ontouchstart' in window) ? 'touchstart' : 'click',
+				        $wrap = $('.image_wrap'),
+				        $images = $wrap.find('img'),
+				        current = 0,
+				        max = $images.length;
+				                        
+				    
+				    function nextImage(){
+				        var next = ( current + 1 < max ) ? current + 1 : 0;
+				        
+				        $images.hide().eq(next).show();
+				        current = next;
+				    }
+				    
+				    $wrap.on( EVENT_TYPE, nextImage );
+
+			});
+		</script>
+	</body>
+</html>
